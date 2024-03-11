@@ -1,11 +1,10 @@
 package pagefactory;
 
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 public class AccInformation {
     WebDriver driver;
@@ -47,24 +46,30 @@ public class AccInformation {
         PageFactory.initElements(driver, this); // Initialize elements using Page Factory
     }
 
-    @Test(dataProvider = "dp")
-    public void account_info(String fname, String lname, String eml, String phn, String add1, String add2, String cty, String sta, String zp, String cntry) {
-        firstName.sendKeys(fname);
-        lastName.sendKeys(lname);
-        email.sendKeys(eml);
-        phone.sendKeys(phn);
-        address1.sendKeys(add1);
-        address2.sendKeys(add2);
-        city.sendKeys(cty);
-        state.sendKeys(sta);
-        zip.sendKeys(zp);
-        country.sendKeys(cntry);
+    @Test
+    public void account_info() {
+        // You can modify the data array as per your test cases
+        String[][] data = acc_info_Data();
+
+        for (String[] row : data) {
+            firstName.sendKeys(row[0]);
+            lastName.sendKeys(row[1]);
+            email.sendKeys(row[2]);
+            phone.sendKeys(row[3]);
+            address1.sendKeys(row[4]);
+            address2.sendKeys(row[5]);
+            city.sendKeys(row[6]);
+            state.sendKeys(row[7]);
+            zip.sendKeys(row[8]);
+            country.sendKeys(row[9]);
+
+            // Add any assertions or verification steps as needed
+        }
     }
 
-    @DataProvider(name = "dp")
-    String[][] acc_info_Data() {
-        String data1[][] = {
-                {"First", "Last", "abc@gmail.com", "012345", "Rd no:22", "Apartment:2c", "NYC", "New York", "1234", "USA",}
+    private String[][] acc_info_Data() {
+        String[][] data1 = {
+                {"First", "Last", "abc@gmail.com", "012345", "Rd no:22", "Apartment:2c", "NYC", "New York", "1234", "USA"}
         };
         return data1;
     }

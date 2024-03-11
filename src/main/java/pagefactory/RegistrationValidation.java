@@ -4,17 +4,17 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-
+import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class RegistrationValidation {
+
     private WebDriver driver;
 
     @FindBy(xpath = "(//input[@name='newAccount'])[1]")
@@ -27,26 +27,22 @@ public class RegistrationValidation {
     }
 
     @Test
-    public void registration_btn() 
-    {
+    public void registration_btn() {
         saveAccountButton.click();
     }
-    public void registration_validation() 
-    {
 
+    @Test
+    public void registration_validation() {
         String currentUrl = driver.getCurrentUrl();
         Assert.assertEquals(currentUrl, "https://petstore.octoperf.com/actions/Account.action");
     }
 
-        
-    
-    public void capture_screenshot() throws IOException
-    {
-    	driver.manage().window().maximize();
+    @Test
+    public void capture_screenshot() throws IOException {
+        driver.manage().window().maximize();
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
         File trg = new File("C:\\Users\\mummu\\eclipse-workspace\\PageFactory_cucumber\\Screenshot\\fullpage.png");
         FileUtils.copyFile(src, trg);
     }
 }
-

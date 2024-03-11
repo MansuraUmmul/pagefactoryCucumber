@@ -66,7 +66,7 @@ public class UserRegistration {
 	@When("the User successfully fills the Account Information section")
 	public void the_user_successfully_fills_the_account_information_section() {
 		AccInformation accountInfo = new AccInformation(driver);            
-        accountInfo.account_info("First", "Last", "abc@gmail.com", "012345", "Rd no:22", "Apartment:2c", "NYC", "New York", "1234", "USA");
+        accountInfo.account_info();
 	}
 
 	 @When("the User clicks on the Save Account Information button")
